@@ -1,20 +1,18 @@
+import sys
+
 def solution(people, game):
-    play_time = 0
-
     if game == "Y":
-        play_time = len(people)
+        return len(people)
     elif game == "F":
-        play_time = len(people) // 2
+        return len(people) // 2
     elif game == "O":
-        play_time = len(people) // 3
+        return len(people) // 3
 
-    return print(play_time)
-
-N, game = input().split()
+N, game = sys.stdin.readline().split()
 people = set()
 
 for _ in range(int(N)):
-    name = input()
+    name = sys.stdin.readline().strip()
     people.add(name)
 
-solution(people, game)
+print(solution(people, game))
