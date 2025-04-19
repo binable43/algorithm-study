@@ -2,27 +2,24 @@ import sys
 
 T = int(input())
 
-candidates = []
-
 for _ in range(T):
-    candidate = sys.stdin.readline().strip()
-    candidates.append(candidate)
+    string = sys.stdin.readline().strip()
+    stack = []
+    is_vps = True
 
-for letter in candidates:
-    left = 0
-    right = 0
+    for s in string:
+        if s == "(":
+            stack.append(s)
+        elif s == ")":
+            if not stack:
+                is_vps = False
+                break
+            stack.pop()
 
-    for l in letter:
+    if stack:
+        is_vps = False
 
-        if right > left:
-            break
-
-        if l == "(":
-            left += 1
-        elif l == ")":
-            right += 1
-
-    if right == left:
+    if is_vps:
         print("YES")
     else:
         print("NO")
